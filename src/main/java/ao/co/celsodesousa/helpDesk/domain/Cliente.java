@@ -1,20 +1,51 @@
 package ao.co.celsodesousa.helpDesk.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import lombok.Builder;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 
 
 @Data
-@EqualsAndHashCode(callSuper=true)
-@Builder
-public class Cliente extends Pessoa {
+@EqualsAndHashCode(callSuper=false)
+@Entity
+@NoArgsConstructor
+public class Cliente extends Pessoa implements Serializable {
 	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	
+	
+	@ElementCollection(fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "cliente")
 	private List<Chamado> chamados = new ArrayList<>();
+	
+	public Cliente(String nome, String cpf, String email, String senha, List<Chamado> chamados) {
+		super(nome, cpf, email, senha);
+		this.chamados = chamados;
+	}
+	
+	public Cliente(Integer id,String nome, String cpf, String email, String senha, List<Chamado> chamados) {
+		super(id,nome, cpf, email, senha);
+		this.chamados = chamados;
+	}
+	
+	
+	
+	
+	
 
 }

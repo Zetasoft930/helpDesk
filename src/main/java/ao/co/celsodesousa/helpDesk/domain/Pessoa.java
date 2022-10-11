@@ -1,25 +1,77 @@
 package ao.co.celsodesousa.helpDesk.domain;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import javax.persistence.CollectionTable;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import ao.co.celsodesousa.helpDesk.domain.enums.Perfil;
 
-public abstract class Pessoa {
+@Entity
+public abstract class Pessoa implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected Integer id;
+	@Column(nullable = false,length = 150)
 	protected String nome;
+	@Column(nullable = false,length = 50,unique = true)
 	protected String cpf;
+	@Column(nullable = false,length = 255,unique = true)
 	protected String email;
+	@Column(nullable = false)
 	protected String senha;
+	
+	@ElementCollection(fetch = FetchType.EAGER)
+	@CollectionTable(name="PERFIS")
 	protected Set<Integer> perfils = new HashSet<Integer>();
+	
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	protected LocalDate dataCriacao = LocalDate.now();
 	
 	
 	
+	public Pessoa(Integer id, String nome, String cpf, String email, String senha) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.cpf = cpf;
+		this.email = email;
+		this.senha = senha;
+	}
+	
+	
+
+	public Pessoa(Integer id, String nome, String cpf, String email, String senha, Set<Integer> perfils) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.cpf = cpf;
+		this.email = email;
+		this.senha = senha;
+		this.perfils = perfils;
+	}
+	
+
+
 	public Pessoa(String nome, String cpf, String email, String senha) {
 		super();
 		this.nome = nome;
