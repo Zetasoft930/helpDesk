@@ -20,12 +20,10 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import ao.co.celsodesousa.helpDesk.domain.enums.Prioridade;
 import ao.co.celsodesousa.helpDesk.domain.enums.Status;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 public class Chamado implements Serializable {
@@ -61,6 +59,38 @@ public class Chamado implements Serializable {
 	
 	
 	
+	public Chamado(Prioridade prioridade, String titulo, String observacao, Tecnico tecnico, Cliente cliente) {
+		super();
+		this.prioridade = prioridade;
+		this.titulo = titulo;
+		this.observacao = observacao;
+		this.tecnico = tecnico;
+		this.cliente = cliente;
+		
+		this.status = Status.ABERTO;
+	}
+	
+	
+
+
+	public Chamado(Integer id, LocalDate dataAbertura, LocalDate dataFechamento, Prioridade prioridade, String titulo,
+			String observacao, Status status, Tecnico tecnico, Cliente cliente) {
+		super();
+		this.id = id;
+		this.dataAbertura = dataAbertura;
+		this.dataFechamento = dataFechamento;
+		this.prioridade = prioridade;
+		this.titulo = titulo;
+		this.observacao = observacao;
+		this.status = status;
+		this.tecnico = tecnico;
+		this.cliente = cliente;
+	}
+	
+	
+	
+	
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -76,8 +106,10 @@ public class Chamado implements Serializable {
 	public int hashCode() {
 		return Objects.hash(id);
 	}
-	
-	
+
+
+
+
 	
 	
 	

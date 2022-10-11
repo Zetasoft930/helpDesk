@@ -72,14 +72,7 @@ public abstract class Pessoa implements Serializable {
 	
 
 
-	public Pessoa(String nome, String cpf, String email, String senha) {
-		super();
-		this.nome = nome;
-		this.cpf = cpf;
-		this.email = email;
-		this.senha = senha;
-		addPerfil(Perfil.CLIENTE);
-	}
+
 
 	public Pessoa(String nome, String cpf, String email, String senha, Set<Integer> perfils) {
 		super();
@@ -88,6 +81,15 @@ public abstract class Pessoa implements Serializable {
 		this.email = email;
 		this.senha = senha;
 		this.perfils = perfils;
+	}
+	
+	public Pessoa(String nome, String cpf, String email, String senha) {
+		super();
+		this.nome = nome;
+		this.cpf = cpf;
+		this.email = email;
+		this.senha = senha;
+		addPerfil(Perfil.CLIENTE);
 	}
 
 	public Pessoa() {

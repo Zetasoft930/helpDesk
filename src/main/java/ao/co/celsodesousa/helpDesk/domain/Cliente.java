@@ -43,6 +43,15 @@ public class Cliente extends Pessoa implements Serializable {
 		this.chamados = chamados;
 	}
 	
+	public Cliente(Integer id,String nome, String cpf, String email, String senha) {
+		super(id,nome, cpf, email, senha);
+		
+	}
+	public Cliente(String nome, String cpf, String email, String senha) {
+		super(nome, cpf, email, senha);
+		
+	}
+	
 	
 	
 	
