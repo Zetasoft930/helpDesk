@@ -1,5 +1,6 @@
 package ao.co.celsodesousa.helpDesk.config;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -29,5 +30,12 @@ public class DevConfig {
 		
 		return false;
 	}
+	
+
+	@Bean
+	public ModelMapper modelMapperConfig() {
+		return new ModelMapper();
+	}
+
 
 }

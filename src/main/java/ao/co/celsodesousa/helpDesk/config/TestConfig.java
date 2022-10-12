@@ -1,5 +1,6 @@
 package ao.co.celsodesousa.helpDesk.config;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,5 +21,12 @@ public class TestConfig {
 		
 		this.dbService.instanciaDB();
 	}
+	
+
+	@Bean
+	public ModelMapper modelMapperConfig() {
+		return new ModelMapper();
+	}
+
 
 }
